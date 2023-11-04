@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="tph-holder">
+        <table border="1">
+            <tr>
+                <td colspan="2">&nbsp;</td>
+                <td colspan="2">Sarı</td>
+                <td colspan="2">Turkuaz</td>
+                <td colspan="2">Siyah</td>
+            </tr>
+            <tr>
+                <td colspan="2">Açılış Fiyatı</td>
+                <td>Açılış</td>
+                <td>Km Fiyatı</td>
+                <td>Açılış</td>
+                <td>Km Fiyatı</td>
+                <td>Açılış</td>
+                <td>Km Fiyatı</td>
+            </tr>
+            <tr>
+                <td colspan="2">Ankara</td>
+                <td>18,00$</td>
+                <td>15,00$</td>
+                <td>30,00$</td>
+                <td>25,00$</td>
+                <td>50,00$</td>
+                <td>45,00$</td>
+            </tr>
+            <tr>
+                <td colspan="2">İstanbul</td>
+                <td>25,00$</td>
+                <td>23,00$</td>
+                <td>40,00$</td>
+                <td>38,00$</td>
+                <td>60,00$</td>
+                <td>55,00$</td>
+            </tr>
+            <tr>
+                <td colspan="2">İzmir</td>
+                <td>22,00$</td>
+                <td>20,00$</td>
+                <td>35,00$</td>
+                <td>32,00$</td>
+                <td>55,00$</td>
+                <td>50,00$</td>
+            </tr>
+        </table>
+    </div>
+    <div id="tph-holder2">
+        <table border="1">
+            <tr>
+                <td>Şehir</td>
+                <td>
+                    <select id="sehirSecme">
+                        <option value="istanbul">İstanbul</option>
+                        <option value="ankara">Ankara</option>
+                        <option value="izmir">İzmir</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Taksi Tipi</td>
+                <td>
+                    <select id="taksiTipiSecme">
+                        <option value="sari">Sarı</option>
+                        <option value="turkuaz">Turkuaz</option>
+                        <option value="siyah">Siyah</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Kilometre</td>
+                <td>
+                    <input type="number" id="kmNumara" placeholder="Kilometre giriniz">
+                </td>
+            </tr>
+            <tr>
+                <td>Sonuç</td>
+                <td>
+                    <span id="sonuc"></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <script>
+        const sehirSecme = document.getElementById("sehirSecme");
+        const taksiTipiSecme = document.getElementById("taksiTipiSecme");
+        const kmNumara = document.getElementById("kmNumara");
+        const sonuc = document.getElementById("sonuc");
+    
+        sehirSecme.addEventListener("change", hesapla);
+        taksiTipiSecme.addEventListener("change", hesapla);
+        kmNumara.addEventListener("input", hesapla);
+    
+        function hesapla() {
+            const secilenSehir = sehirSecme.value;
+            const secilenTaksiTipi = taksiTipiSecme.value;
+            const km = parseFloat(kmNumara.value);
+            let sonucFiyat = 0;
+    
+            if (secilenSehir === "istanbul") {
+                if (secilenTaksiTipi === "sari") {
+                    sonucFiyat = 25 + km * 23;
+                } else if (secilenTaksiTipi === "turkuaz") {
+                    sonucFiyat = 40 + km * 38;
+                } else if (secilenTaksiTipi === "siyah") {
+                    sonucFiyat = 60 + km * 55;
+                }
+            } else if (secilenSehir === "ankara") {
+                if (secilenTaksiTipi === "sari") {
+                    sonucFiyat = 18 + km * 15;
+                } else if (secilenTaksiTipi === "turkuaz") {
+                    sonucFiyat = 30 + km * 25;
+                } else if (secilenTaksiTipi === "siyah") {
+                    sonucFiyat = 50 + km * 45;
+                }
+            } else if (secilenSehir === "izmir") {
+                if (secilenTaksiTipi === "sari") {
+                    sonucFiyat = 22 + km * 20;
+                } else if (secilenTaksiTipi === "turkuaz") {
+                    sonucFiyat = 35 + km * 32;
+                } else if (secilenTaksiTipi === "siyah") {
+                    sonucFiyat = 55 + km * 50;
+                }
+            }
+    
+            sonuc.textContent = "Ücret: " + sonucFiyat.toFixed(2) + " TL";
+        }
+    </script>
+</body>
+</html>
